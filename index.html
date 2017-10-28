@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    </head>
+    <body>
+        <div id="future"></div>
+       <h2>Say a word!</h2>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.0.0/annyang.min.js"></script>
+      <script>
+          var socket = io.connect('https://democrashot.herokuapp.com/');
+          socket.on('broad', function(data) {
+                  $('#future').html(data);
+            });
+            if (annyang) {
+              // Let's define our first command. First the text we expect, and then the function it should call
+              var commands = {
+                'Rosie': function() {
+                  socket.emit('messages', "rosie odonnell");
+                },
+                'Wall': function() {
+                  socket.emit('messages', "wall");
+                },
+                'Mexico': function() {
+                  socket.emit('messages', "mexico");
+                },
+                'Stupid': function() {
+                  socket.emit('messages', "stupid");
+                },
+                'China': function() {
+                  socket.emit('messages', "china");
+                },
+                'Illegals': function() {
+                  socket.emit('messages', "illegals");
+                },
+              };
+              annyang.debug();
+              // Add our commands to annyang
+              annyang.addCommands(commands);
+
+              // Start listening. You can call this here, or attach this call to an event, button, etc.
+              annyang.start();
+            }
+      </script>
+    </body>
+</html>

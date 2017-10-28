@@ -1,0 +1,20 @@
+{
+  "name": "bower install jquery --save",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "cornelius <cornelius@isl.co>"
+  ],
+  "license": "ISC",
+  "moduleType": [
+    "node"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

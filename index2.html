@@ -1,0 +1,61 @@
+<!doctype html>  
+<html lang="en">  
+    <head>
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <style>
+            .btn-trigger {
+                width: 100%;
+                height: 80px;
+                margin-bottom: 10px;
+                font-size: 20px;
+                background-color: lightblue;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- <h1>Hello World!</h1> -->
+        <div id="future"></div>
+       <h2>Keyword!</h2>
+        <div class="btn-trigger">
+            Wall
+        </div>
+        <div class="btn-trigger">
+            Mexico
+        </div>
+        <div class="btn-trigger">
+            Stupid
+        </div>
+        <div class="btn-trigger">
+            China
+        </div>
+        <div class="btn-trigger">
+            Illegals
+        </div>
+        <div class="btn-trigger">
+            Rosie Odonnell
+        </div>
+        <form id="form" id="chat_form">
+            <input id="chat_input" type="text">
+            <input type="submit" value="Send">
+        </form>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="/socket.io/socket.io.js"></script> 
+      <script>  
+          var socket = io.connect('https://democrashot.herokuapp.com/');
+          socket.on('broad', function(data) {
+                  $('#future').html(data);
+            });
+            $('.btn-trigger').click(function(e){
+                var message = $(this).text().toLowerCase().trim();
+
+                socket.emit('messages', message);
+            });
+
+          $('form').submit(function(e){
+                e.preventDefault();
+                var message = $('#chat_input').val();
+                socket.emit('messages', message);
+          });
+      </script>
+    </body>
+</html> 
